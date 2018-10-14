@@ -13,7 +13,7 @@ module.exports = {
         short_name: 'guady',
         start_url: '/',
         background_color: 'white',
-        theme_color: 'black',
+        theme_color: 'white',
         display: 'minimal-ui',
         icon: 'src/images/cleanup.png', // This path is relative to the root of the site.
       },
