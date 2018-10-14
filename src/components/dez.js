@@ -9,7 +9,7 @@ const dez = () => (
         imageOne: file(relativePath: { eq: "cleanup.png" }) {
                 childImageSharp {
                     fluid(maxWidth: 1000) {
-                        ...GatsbyImageSharpFluid
+                        ...GatsbyImageSharpFluid_withWebp_noBase64
                     }
                 }
         }
