@@ -12,8 +12,8 @@ module.exports = {
         name: 'guady',
         short_name: 'guady',
         start_url: '/',
-        background_color: 'white',
-        theme_color: 'white',
+        background_color: 'black',
+        theme_color: 'black',
         display: 'minimal-ui',
         icon: 'src/images/head.png', // This path is relative to the root of the site.
       },

@@ -1,4 +1,8 @@
 import React from 'react'
+import Dez from '../components/dez'
+import { graphql, StaticQuery } from 'gatsby'
+import Img from 'gatsby-image'
+
 
 import Layout from '../components/layout'
 import Header from '../components/header'
@@ -62,6 +66,29 @@ class SecondPage extends React.Component {
     onClick={(e) => this.handleCount(e)}>    </button> */}
 
         <Header siteTitle={"coming SOON"} width='55rem' height='25rem' theme={theme.dark}/>
+        <StaticQuery
+        query={graphql`
+        query {
+        imageOne: file(relativePath: { eq: "hardhat-dez.png" }) {
+                childImageSharp {
+                    fluid(maxWidth: 1000) {
+                        ...GatsbyImageSharpFluid_withWebp_noBase64
+                    }
+                }
+        }
+        }`}
+        render={data => (
+            <div style={{
+                position: 'absolute',
+                top: '-155px',
+                left: '10px',
+                width: '200px',
+                height: '200px',
+            }}>
+            <Img fluid={data.imageOne.childImageSharp.fluid} />
+            </div>
+        )}
+    />       
 
 
 
