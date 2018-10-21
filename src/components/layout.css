@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'MyWebFont';
-  src:url('../fonts/Bullet-SmallCapsAlt.ttf')  /* Safari, Android, iOS */
+  src:url('../fonts/Bullet-SmallCapsAlt.ttf') ; /* Safari, Android, iOS */
+  src: url('../fonts/Bullet-SmallCapsAlt.woff') format('woff'), /* Pretty Modern Browsers */
 }
 
 .anaglyph {

@@ -35,6 +35,7 @@ const Layout = ({ children }) => (
             position: 'fixed',
             height: '100%',
             width: '100%',
+            
           }}
         >
           {children}
