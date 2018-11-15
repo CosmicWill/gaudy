@@ -32,7 +32,6 @@ const Header = ({ siteTitle, to='/' , theme, height}) => (
       background: theme.background,
       ...flexBox,
     }}
-    className=''
   >
     <div
       style={{

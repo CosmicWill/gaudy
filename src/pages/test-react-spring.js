@@ -1,8 +1,7 @@
 import React from "react"
-import { graphql ,navigate } from "gatsby"
+import { graphql } from "gatsby"
 import Layout from '../components/layout'
 import Img from 'gatsby-image'
-import PageTransition from 'gatsby-plugin-page-transitions';
 
 import { Spring,config } from 'react-spring'
 import Dez from '../components/dez'
@@ -17,6 +16,33 @@ const styles = {
   shape: { width: 300, height: 80, willChange: 'transform' },
 }
 
+const header = ({ toggle, color, scalex, scaley,scalez,shape, start, end, stop, rotation, top }) => (
+  <div className='checkered' style={{ ...styles.container, background: `linear-gradient(to bottom, ${start} ${stop}, ${end} 100%)` }}>      
+    <svg
+      style={{ ...styles.shape, transform: `scale3d(${scalex}, ${scaley}, ${scalez}) rotate(${rotation})` }}
+      version="1.1"
+      viewBox="0 0 300 80">
+      <g fill={color} fillRule="evenodd" >
+        <path id="path-1" d={shape} />
+      </g>
+    </svg>
+    <h1 onClick={toggle}
+    className='anaglyph'
+        style={{
+            position: 'absolute',
+            top: `${top}`,
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 300,
+            textAlign:'center',
+            fontSize: '5rem',
+            willChange: 'top'
+        }}
+    >
+      guady  
+    </h1>
+  </div>
+)
 
 const dez = ({ bottom, right,top, left, image, rotation, translate }) => (
   <div style={{                
@@ -37,41 +63,9 @@ const dez = ({ bottom, right,top, left, image, rotation, translate }) => (
 class Home extends React.Component {
   state = { toggle: true}
   toggle = () => this.setState(state => ({ toggle: !state.toggle }))
-  exit = () =>{
-    setTimeout(() => this.toggle())
-    setTimeout(() => navigate('/test-soon'),1200)
-  }
+  
   render() {
     const toggle = this.state.toggle
-
-    const header = ({ toggle, color, scalex, scaley,scalez,shape, start, end, stop, rotation, top }) => (
-  <div className='' style={{ ...styles.container, background: `linear-gradient(to bottom, ${start} ${stop}, ${end} 100%)` }}>      
-    <svg 
-      style={{ ...styles.shape, transform: `scale3d(${scalex}, ${scaley}, ${scalez}) rotate(${rotation})` }}
-      version="1.1"
-      viewBox="0 0 300 80">
-      <g fill={color} fillRule="evenodd" >
-        <path id="path-1" d={shape} />
-      </g>
-    </svg>
-    <h1 onClick={() => this.exit()}
-    className='anaglyph'
-        style={{
-            position: 'absolute',
-            top: `${top}`,
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: 300,
-            textAlign:'center',
-            fontSize: '5rem',
-            willChange: 'top'
-        }}
-    >
-      guady  
-    </h1>
-  </div>
-)
-
     return (
       <Layout>
         <Spring 
@@ -106,6 +100,26 @@ class Home extends React.Component {
           }}
           toggle={this.toggle} // Additional props will be spread over the child
           children={dez} // Render prop
+        />
+
+
+        <Spring config={config.molasses}
+          from={{
+    
+            // top: '-1000px',
+            // left: '10px',
+            rotation: '90deg',            
+            translate:'-300px,1000px,0px',   
+            image: this.props.data.hardhatDez.childImageSharp.fluid
+          }}
+          to={{ 
+            // top:  toggle ? '-1000px' :'-155px',
+            // left: toggle ? '10px' :'10px',
+            rotation: '90deg',            
+            translate: toggle ? '-300px,1000px,0px' : '-300px,0px,0px',   
+          }}
+          toggle={this.toggle} // Additional props will be spread over the child
+          children={dez} // Render prop 
         />
       </Layout>
     )
