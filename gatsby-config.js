@@ -18,6 +18,12 @@ module.exports = {
         icon: 'src/images/head.png', // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: 'gatsby-plugin-page-transitions',
+      options: {
+        transitionTime: 250
+      }
+    },
     'gatsby-plugin-offline',
     {
       resolve: `gatsby-source-filesystem`,

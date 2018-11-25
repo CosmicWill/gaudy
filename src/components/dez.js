@@ -15,17 +15,7 @@ const dez = () => (
                 }
         }
         }`}
-        render={data => (
-            <div style={{
-                position: 'absolute',
-                bottom: '10px',
-                right: '10px',
-                width: '200px',
-                height: '200px',
-            }}>
-            <Img fluid={data.imageOne.childImageSharp.fluid} />
-            </div>
-        )}
+        render={data => (<Img fluid={data.imageOne.childImageSharp.fluid} />)}
     />
 )
 
