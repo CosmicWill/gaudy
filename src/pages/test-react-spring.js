@@ -3,39 +3,49 @@ import { graphql } from "gatsby"
 import Layout from '../components/layout'
 import Img from 'gatsby-image'
 import { Spring,config } from 'react-spring'
+import { Card, CardBody, Button, CardTitle, CardText, CardImg, Row, Col, Container } from 'reactstrap';
 
 const RECTANGLE = 'M0,0 L0,80 L300,80 L300,0 Z'
 
 const styles = {
-  container: { height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', willChange: 'background', },
+  container: {display: 'flex', alignItems: 'center', justifyContent: 'center',  willChange: 'background', },
   shape: { width: 300, height: 80, willChange: 'transform' },
   header: { position: 'absolute', left:'50%', transform: 'translate(-50%, -50%)', width: 300, textAlign:'center', fontSize: '5rem', zIndex: 5, willChange: 'top'},
-  nav: { position: 'fixed', display: 'inline', textAlign:'center', fontSize: '1rem', willChange: 'opacity'},
+  nav: { position: 'absolute', display: 'inline', textAlign:'center', fontSize: '1rem', willChange: 'opacity'},
   dez: { position: 'fixed', width: '200px', height: '200px', willChange: 'transform', }
 }
 
-const header = ({ toggle, color, scalex, scaley,scalez,shape, start, end, stop, rotation, top, opacity, navTop }) => (
-  <div style={{ ...styles.container, background: `linear-gradient(to bottom, ${start} ${stop}, ${end} 100%)` }}>      
-    <svg
-      style={{ ...styles.shape,position:'absolute', transform: `scale3d(${scalex}, ${scaley}, ${scalez}) rotate(${rotation})` }}
-      version="1.1"
-      viewBox="0 0 300 80">
-      <g fill={color} fillRule="evenodd" >
-        <path id="path-1" d={shape} />
-      </g>
-    </svg>
-    <h1 onClick={toggle} className='anaglyph' style={{ ...styles.header, top: `${top}`}}>
-      GUADY  
-    </h1>
+const header = ({ toggle, color, scalex, scaley,scalez,shape, start, end, stop, rotation, top, opacity, navTop, svgTop }) => (
+  
+  <Container style={{ ...styles.container, height: '100%', background: `linear-gradient(to bottom, ${start} ${stop}, ${end} 100%)` }}>      
+  <Row>
+    <Col>
+      <svg
+        style={{ ...styles.shape, transform: `scale3d(${scalex}, ${scaley}, ${scalez}) rotate(${rotation})` ,top: `${svgTop}` }}
+        version="1.1"
+        viewBox="0 0 300 80">
+        <g fill={color} fillRule="evenodd" >
+          <path id="path-1" d={shape} />
+        </g>
+      </svg>
+      <h1 onClick={toggle} className='anaglyph' style={{ ...styles.header, top: `${top}`}}>
+        GUADY  
+      </h1>
+      </Col>
 
-    <div id="nav-menu" style={{...styles.nav ,top:`${navTop}`, opacity: opacity}}>
-      <ul style={{display: 'inline'}}>
-        <li><a href='#' title='Gallary'>Gallary</a></li>
-        <li><a style={{textShadow: '-1px 0 1px rgb(246,5,10) , 3px 0 1px rgb(30,242,241)'}} href='#' title='Sales'>Sales</a></li>
-        <li><a href='#' title='Contact Me'>Contact Me</a></li>
-      </ul>
-    </div>
-  </div>
+      </Row>
+      <Row>
+        <Col>
+      <div id="nav-menu" style={{...styles.nav ,top:`${navTop}`, opacity: opacity}}>
+        <ul style={{display: 'inline'}}>
+          <li><a href='#' title='Gallary'>Gallary</a></li>
+          <li><a style={{textShadow: '-1px 0 1px rgb(246,5,10) , 3px 0 1px rgb(30,242,241)'}} href='#' title='Sales'>Sales</a></li>
+          <li><a href='#' title='Contact Me'>Contact Me</a></li>
+        </ul>
+      </div>
+      </Col>
+      </Row>
+  </Container> 
 )
 
 const dez = ({ image, rotation, translate }) => (
@@ -60,26 +70,32 @@ class Home extends React.Component {
 
   render() {
     const toggle = this.state.toggle
-    const width = 1.01*this.state.width/300.0
-    const height = 1.01*this.state.height/80.0
+    const width = this.state.width/300.0
+    const height = this.state.height/80.0
 
     return (
       <Layout>
         <Spring 
         config={config.slow}
-          from={{ color: 'black', opacity: 0, }}
+          from={{ 
+            opacity: 0, 
+            color: 'white',
+            start: 'black',
+            end: 'black', 
+          }}
           to={{ 
             color: toggle ? 'black' : 'black',
-            start: toggle ? 'white' : 'white',
-            end: toggle ? 'white' : 'white',
-            scalex: toggle ? 1 : width,
-            scaley: toggle ? 1 : height,
-            scalez: toggle ? 1 : 1,
+            start: toggle ? 'white' : 'black',
+            end: toggle ? 'white' : 'black',
+            scalex: toggle ? 1 : 0,
+            scaley: toggle ? 1 : 0,
+            scalez: toggle ? 1 : 0,
             shape: RECTANGLE,
             stop: toggle ? '0%' : '50%',
             rotation: toggle ? '0deg' : '0deg',
             top: toggle ? '50%' : '7%',
-            navTop: toggle ? '50%' : '13%',
+            navTop: toggle ? '50%' : '11%',
+            svgTop: toggle ? '50%' : '0%',
             opacity: toggle ? 0 : 1,
           }}
           toggle={this.toggle} // Additional props will be spread over the child
@@ -104,7 +120,6 @@ class Home extends React.Component {
             rotation: '90deg',            
             translate:'-300px,1000px,0px',
             image: this.props.data.hardhatDez.childImageSharp.fluid,
-   
           }}
           to={{ 
             rotation: '90deg',            
@@ -114,9 +129,59 @@ class Home extends React.Component {
           children={dez} // Render prop 
         />
 
+        <Container fluid>
+        <Row>
+        <Col sm="6">
+          <Card>
+            <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+            <CardBody>
+              <CardTitle>Card Title</CardTitle>
+              <CardText>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</CardText>
+              <CardText>
+                <small className="text-muted">Last updated 3 mins ago</small>
+              </CardText>
+            </CardBody>
+          </Card>
+        </Col>
+        <Col sm="6">
+          <Card>
+            <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+            <CardBody>
+              <CardTitle>Card Title</CardTitle>
+              <CardText>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</CardText>
+              <CardText>
+                <small className="text-muted">Last updated 3 mins ago</small>
+              </CardText>
+            </CardBody>
+          </Card>
+        </Col>
+        <Col sm="6">
+          <Card>
+            <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+            <CardBody>
+              <CardTitle>Card Title</CardTitle>
+              <CardText>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</CardText>
+              <CardText>
+                <small className="text-muted">Last updated 3 mins ago</small>
+              </CardText>
+            </CardBody>
+          </Card>
+        </Col>
 
-
-
+        <Col sm="6">
+          <Card>
+            <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+            <CardBody>
+              <CardTitle>Card Title</CardTitle>
+              <CardText>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</CardText>
+              <CardText>
+                <small className="text-muted">Last updated 3 mins ago</small>
+              </CardText>
+            </CardBody>
+          </Card>
+        </Col>
+        </Row>
+      </Container>
       </Layout>
     )
   }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './layout.css'
 
 const Layout = ({ children }) => (
@@ -27,11 +28,11 @@ const Layout = ({ children }) => (
         >
           <html lang="en" />
         </Helmet>
-        <div className='checkered'
+        <div
           style={{
             margin: ' 0 auto',
             paddingTop: 0,
-            position: 'fixed',
+            position: 'absolute',
             height: '100%',
             width: '100%',
             

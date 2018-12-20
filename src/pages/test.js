@@ -2,7 +2,6 @@ import React from "react"
 import { graphql ,navigate } from "gatsby"
 import Layout from '../components/layout'
 import Img from 'gatsby-image'
-import PageTransition from 'gatsby-plugin-page-transitions';
 
 import { Spring,config } from 'react-spring'
 import Dez from '../components/dez'
