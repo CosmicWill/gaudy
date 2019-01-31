@@ -1,0 +1,94 @@
+@font-face {
+  font-family: 'MyWebFont';
+  src:url('../../fonts/Bullet-SmallCapsAlt.ttf') ; /* Safari, Android, iOS */
+  src: url('../../fonts/Bullet-SmallCapsAlt.woff') format('woff'), /* Pretty Modern Browsers */
+}
+
+.anaglyph {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  border: none;
+  font-family: 'MyWebFont';
+  color: rgb(255, 255, 255);
+  text-align: center;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  letter-spacing: 3px;
+  text-shadow: -3px 0 1px rgb(30,242,241) , 3px 0 1px rgb(246,5,10) ;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  padding: 0rem .7rem;
+  font-weight: 700;
+    text-rendering: optimizeLegibility;
+}
+
+/* .anaglyph:hover {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  border: none;
+  font-family: 'MyWebFont';
+  color: rgb(255, 255, 255);
+  text-align: center;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  letter-spacing: 3px;
+  text-shadow: -3px 0 1px  rgb(246,5,10), 3px 0 1px  rgb(30,242,241);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  padding: 0rem .7rem;
+} */
+
+
+.anaglyph-link {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  border: none;
+  font-family: 'MyWebFont';
+  color: rgb(255, 255, 255);
+  text-align: center;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  text-shadow: -1px 0 1px  rgb(246,5,10), 1px 0 1px  rgb(30,242,241);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  padding: 0rem .8rem;
+}
+
+.anaglyph-link:hover {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  border: none;
+  font-family: 'MyWebFont';
+  color: rgb(255, 255, 255);
+  text-align: center;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  text-shadow: -1px 0 1px  rgb(246,5,10), 1px 0 1px  rgb(30,242,241);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  padding: 0rem .8rem;
+}
